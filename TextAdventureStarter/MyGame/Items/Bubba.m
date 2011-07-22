@@ -19,7 +19,9 @@
 }
 
 -(void)onUse {
-  [WQ print:@"You take a swig, it never seems to end"];
+  [WQ print:@"You take a swig."];
+  [WQ wait:3];
+  [WQ print:@"Pretty refreshing."];
 }
 
 @end
