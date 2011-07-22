@@ -7,6 +7,7 @@
 //
 
 #import "MyGame.h"
+#import "Bubba.h"
 
 @implementation MyGame
 @synthesize wq;
@@ -28,6 +29,12 @@
   courtyard.name = @"Hallway";
   courtyard.description = @"From the outside you see the castle is massive, what else could there be here?";
   [courtyard connectSouth:openingRoom];
+
+  Bubba * b = [[Bubba alloc] init];
+  b.description = @"A Bubba, a giant water holding device";
+  b.descriptionInRoom = @"There is a Bubba on the floor.";
+  b.id = @"bubba";
+  [courtyard addItem:b];
   
   [wq addRoom:openingRoom];
   [wq addRoom:courtyard];

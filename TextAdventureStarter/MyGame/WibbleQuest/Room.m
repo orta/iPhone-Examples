@@ -10,7 +10,7 @@
 
 @implementation Room
 
-@synthesize  name, description, id, north, east, west, south, items = _items, encounter, person, visited;
+@synthesize  north, east, west, south, items = _items, encounter, person, visited, shop;
 
 -(id)init{
   self = [super init];
@@ -59,6 +59,21 @@
   return nil;
 }
 
+-(void)buyItem:(NSArray*)parameter{
+  if(shop!=nil){
+    [shop buyItem:parameter];
+    return;
+  }
+  [WQ print:@"There is no shop"];
+}
+
+-(void)describeShop{
+  if(shop!=nil){
+    [WQ print:[shop description]];
+  }
+  [WQ print:@"There is no shop"];
+}
+
 - (void) connectNorth:(Room*)room{
   self.north = room;
   room.south = self;
@@ -82,11 +97,12 @@
 -(void)examineWithInput:(NSString*)input{
   NSArray * commands = [input componentsSeparatedByString:@" "];
   if ([commands count] > 1) {
-    NSString * key = [commands objectAtIndex:1];    
+    NSString * key = [commands second];    
     NSString * itemDescription = [[self dictionaryForExamine] objectForKey:key];
     if (itemDescription != nil) {
       [WQ print:@"%@", itemDescription];  
     }else{
+      //TODO : look in inventory
       [WQ print:@"Could not find a %@ in this room", key];
     }
   }else{

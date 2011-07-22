@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CommandInterpreter : NSObject
+@interface CommandInterpreter : NSObject{
+  BOOL madeFirstMistake;
+}
+
   @property (retain, nonatomic) IBOutlet WibbleQuest *wq;
   -(void) parse:(NSString*) string;
+
 @end

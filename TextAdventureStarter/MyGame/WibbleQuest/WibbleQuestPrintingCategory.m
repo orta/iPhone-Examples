@@ -21,6 +21,11 @@
   [self execJS:function];
 }
 
+-(void)wait:(float)time {
+  NSString * function = [NSString stringWithFormat:@"wait(%2.2f)", time];
+  [self execJS:function];
+}
+
 -(void) heading:(NSString*)string {
   string = [self sanitize:string];
   NSString * function = [NSString stringWithFormat:@"addHeader('%@')", string];
@@ -52,10 +57,7 @@
 
 -(void) execJS:(NSString*) js {
   //remove chars that break stuff
-  NSString * ok = [_webView stringByEvaluatingJavaScriptFromString:js];  
-  if([@"OK" isEqualToString:ok] == FALSE){
-    NSLog(@"error printing to webview");
-  }
+ [_webView stringByEvaluatingJavaScriptFromString:js];  
 }
 
 @end

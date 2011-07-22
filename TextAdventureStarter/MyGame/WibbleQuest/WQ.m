@@ -11,6 +11,10 @@
 @implementation WQ
 
 +(void) print:(NSString*)string, ...{
+  if (string == nil) {
+    NSLog(@"nil string somewhere in WQ print");
+    return;
+  }
   // do all the argument parsing ourselves and pass through the rendered string
   va_list listOfArguments;
   va_start(listOfArguments, string);
@@ -18,6 +22,11 @@
 
   WibbleQuest *wibble = [WibbleQuest sharedWibble];
   [wibble print:formattedString];
+}
+
++(void) wait:(int)time {  
+  WibbleQuest *wibble = [WibbleQuest sharedWibble];
+  [wibble wait:time];
 }
 
 +(void) heading:(NSString*)string{

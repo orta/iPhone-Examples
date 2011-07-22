@@ -8,17 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Item : NSObject
+@interface Item : WibbleObject
 
-@property (retain, nonatomic) NSString* name;
 @property (retain, nonatomic) NSString* descriptionInRoom;
-@property (retain, nonatomic) NSString* description;
-@property (retain, nonatomic) NSString* id;
 @property (retain, nonatomic) NSString* examine;
 
--(BOOL)didRespondToCommand:(NSArray*)commandArray;
 
 -(void)onPickup;
 -(void)onUse;
+-(void)onDrop;
 
 @end

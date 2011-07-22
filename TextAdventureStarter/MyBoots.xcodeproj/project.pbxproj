@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		603B99CF13D49F860001F9CD /* NSArray-named-captures.m in Sources */ = {isa = PBXBuildFile; fileRef = 603B99CE13D49F860001F9CD /* NSArray-named-captures.m */; };
 		603FB43713D38EDA00DD37ED /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 603FB43613D38EDA00DD37ED /* Icon.png */; };
+		607CB93813D9C21900A72FD2 /* WibbleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 607CB93713D9C21900A72FD2 /* WibbleObject.m */; };
+		607CB93C13D9C29B00A72FD2 /* Bubba.m in Sources */ = {isa = PBXBuildFile; fileRef = 607CB93B13D9C29B00A72FD2 /* Bubba.m */; };
 		609B9FAD13C901D400888A6E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609B9FAC13C901D400888A6E /* UIKit.framework */; };
 		609B9FAF13C901D400888A6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609B9FAE13C901D400888A6E /* Foundation.framework */; };
 		609B9FB113C901D400888A6E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609B9FB013C901D400888A6E /* CoreGraphics.framework */; };
@@ -42,6 +44,10 @@
 		603B99CD13D49F860001F9CD /* NSArray-named-captures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray-named-captures.h"; path = "Categories/NSArray-named-captures.h"; sourceTree = "<group>"; };
 		603B99CE13D49F860001F9CD /* NSArray-named-captures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray-named-captures.m"; path = "Categories/NSArray-named-captures.m"; sourceTree = "<group>"; };
 		603FB43613D38EDA00DD37ED /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		607CB93613D9C21900A72FD2 /* WibbleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WibbleObject.h; sourceTree = "<group>"; };
+		607CB93713D9C21900A72FD2 /* WibbleObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WibbleObject.m; sourceTree = "<group>"; };
+		607CB93A13D9C29B00A72FD2 /* Bubba.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bubba.h; path = Items/Bubba.h; sourceTree = "<group>"; };
+		607CB93B13D9C29B00A72FD2 /* Bubba.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bubba.m; path = Items/Bubba.m; sourceTree = "<group>"; };
 		609B9FA813C901D400888A6E /* MyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		609B9FAC13C901D400888A6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		609B9FAE13C901D400888A6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -223,6 +229,8 @@
 		60F49DD013CBD33E00BDB07C /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				607CB93A13D9C29B00A72FD2 /* Bubba.h */,
+				607CB93B13D9C29B00A72FD2 /* Bubba.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -270,6 +278,8 @@
 		60F5129D13D1C7BE00978EC0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				607CB93613D9C21900A72FD2 /* WibbleObject.h */,
+				607CB93713D9C21900A72FD2 /* WibbleObject.m */,
 				60CC9EFE13C9D5C0006D116C /* WibbleQuest.h */,
 				60CC9EFF13C9D5C0006D116C /* WibbleQuest.m */,
 				60CC9F1913C9F3CA006D116C /* WibbleQuestPrintingCategory.h */,
@@ -381,6 +391,8 @@
 				60F5128F13D11E7E00978EC0 /* Person.m in Sources */,
 				60F5129313D1200700978EC0 /* NSArray-Contains.m in Sources */,
 				603B99CF13D49F860001F9CD /* NSArray-named-captures.m in Sources */,
+				607CB93813D9C21900A72FD2 /* WibbleObject.m in Sources */,
+				607CB93C13D9C29B00A72FD2 /* Bubba.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

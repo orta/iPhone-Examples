@@ -15,14 +15,21 @@
   NSMutableString *newContentString = [NSMutableString string];
   va_list args;
   va_start(args, firstArg);
-  for (NSString *arg = firstArg; arg != nil; arg = va_arg(args, NSString*))
-  {
+  for (NSString *arg = firstArg; arg != nil; arg = va_arg(args, NSString*)) {
     [newContentString appendString:[@"^" stringByAppendingString:arg]];
   }
   va_end(args);
     
   NSArray * words = [newContentString componentsSeparatedByString:@"^"];
   for (NSString * word in words) {
+    if ([newContentString rangeOfString:@" "].location != NSNotFound) {
+      // is there a space in the nsstring given?
+      NSString * selfString = [self componentsJoinedByString:@" "];
+      if ([selfString rangeOfString:word].location != NSNotFound) {
+        return YES;
+      }
+    }
+
     if ([self containsObject:word]) {
       return YES;
     } 

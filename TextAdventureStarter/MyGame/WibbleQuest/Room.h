@@ -8,18 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class Creature, Item, Person;
+@class Creature, Item, Person, Store;
 
-@interface Room : NSObject
-
-@property (retain) NSString* name;
-@property (retain) NSString* description;
-@property (retain) NSString* id;
+@interface Room : WibbleObject
 
 @property (retain) Room* north;
 @property (retain) Room* east;
 @property (retain) Room* south;
 @property (retain) Room* west;
+
+@property (retain) Store* shop;
 
 @property (retain) NSArray *items;
 @property (retain) Creature *encounter;
@@ -39,6 +37,8 @@
 - (void) connectWest:(Room*)room;
 - (void) connectEast:(Room*)room;
 
+-(void)describeShop;
+-(void)buyItem:(NSArray*)parameter;
 -(NSDictionary *)dictionaryForExamine;
 
 -(void)examineWithInput:(NSString*)input;

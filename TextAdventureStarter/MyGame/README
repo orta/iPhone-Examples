@@ -6,6 +6,8 @@ Write on the screen
 --
 Depending on what style of text you'll want to use these 5 commands on WQ
 
++(void) wait:(float)time;
+
 +(void) print:(NSString*)string, ...;
 +(void) say:(NSString*)name words:(NSString*)words;
 +(void) heading:(NSString*)string;
@@ -14,6 +16,7 @@ Depending on what style of text you'll want to use these 5 commands on WQ
 
 e.g. 
 [WQ say:@"orta" words:@"hello there"];
+[WQ wait:3.3];
 [WQ print:@"looks like you picked up %i shoes", shoesCount];
 [WQ heading:@"and so the story ends"];
 

@@ -17,9 +17,9 @@
   return self;
 }
 
--(BOOL) respondToCommand:(NSArray*) commands {
-  if ( [commands count] > 1 && [self hasItem: [commands objectAtIndex:1]] ) {
-    Item *item = [self getItem:[commands objectAtIndex:1]];
+-(BOOL) didRespondToCommand:(NSArray*) commands {
+  if ( [commands count] > 1 && [self hasItem: [commands second]] ) {
+    Item *item = [self getItem:[commands second]];
     return [item didRespondToCommand:commands];
   }  
   return NO;
@@ -45,8 +45,18 @@
 
 -(void)addItem:(Item*) item {
   [item retain];
-  self.items = [self.items arrayByAddingObject: item];
+  self.items = [self.items arrayByAddingObject:item];
   [item onPickup];
+}
+
+-(void)removeItemByID:(NSString*) itemID {
+  [self removeItem:[self getItem:itemID]];
+}
+
+-(void)removeItem:(Item*) item {
+  NSMutableArray * temp = [self.items mutableCopy];
+  [temp removeObject:item];
+  self.items = temp;
 }
 
 -(void)describeInventory {
@@ -57,7 +67,7 @@
     
     for (int i = 0; i < [self.items count]; i++) {
       Item* item = [self.items objectAtIndex:i];
-      [WQ print:[NSString stringWithFormat:@"- %@", item.description ]];
+      [WQ print: [NSString stringWithFormat:@"- %@", item.description ]];
     }
   }
 }

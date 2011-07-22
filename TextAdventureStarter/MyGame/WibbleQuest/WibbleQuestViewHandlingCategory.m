@@ -28,6 +28,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 static const CGFloat IPAD_PORTRAIT_KEYBOARD_HEIGHT = 270;
 static const CGFloat IPAD_LANDSCAPE_KEYBOARD_HEIGHT = 720;
 
+//TODO MAJOR REFACTORING
+
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
   CGRect textFieldRect =
@@ -79,21 +81,38 @@ static const CGFloat IPAD_LANDSCAPE_KEYBOARD_HEIGHT = 720;
       //IPAD
       if (orientation == UIInterfaceOrientationLandscapeRight) {
         heightFraction *= -1;
+        NSLog(@"RIGHT");
       }
 
       animatedDistanceX = floor(IPAD_LANDSCAPE_KEYBOARD_HEIGHT * heightFraction);
     }
   }
   
+  
   CGRect viewFrame = self.view.frame;
   viewFrame.origin.y -= animatedDistanceY;
   viewFrame.origin.x -= animatedDistanceX;
   
   CGRect webViewFrame = _webView.frame;
-  webViewFrame.size.height -= animatedDistanceY;
-  webViewFrame.size.width -= animatedDistanceX;
-  webViewFrame.origin.y += animatedDistanceY;
-  webViewFrame.origin.x += animatedDistanceX;
+
+  
+  if( UIDeviceOrientationIsLandscape( orientation ) ){
+    if (orientation == UIInterfaceOrientationLandscapeRight) {
+      webViewFrame.size.height += animatedDistanceX;
+      webViewFrame.origin.y -= animatedDistanceX;
+
+    }else{
+      webViewFrame.size.height -= animatedDistanceX;
+      webViewFrame.origin.y += animatedDistanceX;
+    }
+    
+  }else{
+    // portrait
+    webViewFrame.size.height -= animatedDistanceY;
+    webViewFrame.origin.y += animatedDistanceY;
+  }
+
+  
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationBeginsFromCurrentState:YES];
@@ -109,13 +128,20 @@ static const CGFloat IPAD_LANDSCAPE_KEYBOARD_HEIGHT = 720;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
   // do it instantly if you're rotating
+  UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+
   if(rotating){
     self.view.frame = [[UIScreen mainScreen] bounds];
     CGRect webViewFrame = _webView.frame;
-    webViewFrame.size.height += animatedDistanceY;
-    webViewFrame.size.width += animatedDistanceX;
-    webViewFrame.origin.y -= animatedDistanceY;
-    webViewFrame.origin.x -= animatedDistanceX;
+    
+    if(UIDeviceOrientationIsLandscape( orientation ) ){
+      webViewFrame.size.height += animatedDistanceX;
+      webViewFrame.origin.y -= animatedDistanceX;
+      
+    }else{
+      webViewFrame.size.height += animatedDistanceY;
+      webViewFrame.origin.y -= animatedDistanceY;
+    }
     _webView.frame = webViewFrame;
 
     animatedDistanceY = 0;
@@ -127,11 +153,21 @@ static const CGFloat IPAD_LANDSCAPE_KEYBOARD_HEIGHT = 720;
     viewFrame.origin.x += animatedDistanceX;
     
     CGRect webViewFrame = _webView.frame;
-    webViewFrame.size.height += animatedDistanceY;
-    webViewFrame.size.width += animatedDistanceX;
-    webViewFrame.origin.y -= animatedDistanceY;
-    webViewFrame.origin.x -= animatedDistanceX;
-
+    
+    if( UIDeviceOrientationIsLandscape( orientation ) ){
+      if (orientation == UIInterfaceOrientationLandscapeRight) {
+        webViewFrame.size.height -= animatedDistanceX;
+        webViewFrame.origin.y += animatedDistanceX;
+        
+      }else{
+        webViewFrame.size.height += animatedDistanceX;
+        webViewFrame.origin.y -= animatedDistanceX;
+      }
+      
+    }else{
+      webViewFrame.size.height += animatedDistanceY;
+      webViewFrame.origin.y -= animatedDistanceY;
+    }
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -147,9 +183,13 @@ static const CGFloat IPAD_LANDSCAPE_KEYBOARD_HEIGHT = 720;
 
 -(void)rotatedToUInterfaceIdiom:(UIInterfaceOrientation) orientation{
   rotating = YES;
+  
   if ([_textField isFirstResponder]) {
     [_textField resignFirstResponder];
   }
+  
+  [_webView stringByEvaluatingJavaScriptFromString:@"rotate()"];  
+
   rotating = NO;
 }
 
@@ -161,11 +201,9 @@ static const CGFloat IPAD_LANDSCAPE_KEYBOARD_HEIGHT = 720;
   [_webView addGestureRecognizer:gestureRecognizer];
 }
 
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
   return YES;
 }
-
 
 -(void)webViewDoubleTapGesture:(id)sender{
   [_textField resignFirstResponder];

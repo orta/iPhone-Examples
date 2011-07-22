@@ -12,11 +12,14 @@
 //private methods
 @interface CommandInterpreter()
 -(void) getCommand:(NSArray *) params;
+-(void) dropCommand:(NSArray *) params;
 -(void) help;
+
 -(void) north;
 -(void) west;
 -(void) east;
 -(void) south;
+
 -(void)moveToRoom:(Room*)newRoom;
 -(NSArray *)removeQuestionMarks:(NSArray*)array;
 @end
@@ -31,6 +34,9 @@
   if ([parameters count] > 0) {
     NSString * command = [parameters first];
     
+    if ([@"" isEqualToString:command]) {
+      return;
+    }
     if([@"help" isEqualToString:command]){
       [self help];
       return;
@@ -83,6 +89,10 @@
       return;
     }
 
+    if([@"drop" isEqualToString:command] || [@"d" isEqualToString:command]){
+      [self dropCommand:parameters];
+      return;
+    }
     
     if([@"examine" isEqualToString:command] || [@"x" isEqualToString:command]){
       if([parameters count] == 1){
@@ -100,6 +110,16 @@
     }
 
     
+    if([@"shop" isEqualToString:command] || [@"trade" isEqualToString:command]){
+      [wq.currentRoom describeShop];
+      return;
+    }
+    
+    if([@"buy" isEqualToString:command]){
+      [wq.currentRoom buyItem:parameters];
+      return;
+    }
+    
     if([@"fight" isEqualToString:command] || [@"f" isEqualToString:command]||
        [@"attack" isEqualToString:command] || [@"a" isEqualToString:command]){
       if (wq.currentRoom.encounter == nil) {
@@ -111,7 +131,7 @@
       return;
     }
     
-    if([@"say" isEqualToString:command] || [@"s" isEqualToString:command]){
+    if([@"say" isEqualToString:command] || [@"ask" isEqualToString:command]){
       if([parameters count] == 1){
         [wq print:@"What do you want to say?"];
         return;
@@ -128,11 +148,12 @@
       }
     }
     
+    if([wq.inventory didRespondToCommand:parameters]) return;
+    if([wq.currentRoom didRespondToCommand:parameters]) return;
+    if([wq.currentRoom.person didRespondToCommand:parameters]) return;
+    if([wq.currentRoom.encounter didRespondToCommand:parameters]) return;
+    if([wq.currentRoom.shop didRespondToCommand:parameters]) return;
     
-    if([wq.inventory respondToCommand:parameters]){
-      return;
-    }
-      
     if([wq.inventory hasItem:command]){
       Item * item = [wq.inventory getItem:command];
       [wq print: item.description];
@@ -147,8 +168,13 @@
       [self getCommand:parameters];
       return;
     }
+    if (madeFirstMistake == NO) {
+      [wq print:@"Command not understood, type help if you want to see the help file."];
+      madeFirstMistake = YES;
+    }else{
+      [wq print:@"Command not recognised"];
+    }
     
-    [wq print:@"Command not recognised"];
   }
 }
 
@@ -196,9 +222,12 @@
     
     [wq print:@"get [item]"];
     [wq command:@"get an item from the current room."];
+
+    [wq print:@"drop [item]"];
+    [wq command:@"drop an item into the current room."];
     
     [wq print: @"examine [item]"];
-    [wq command:@"examine an item either in the room."];
+    [wq command:@"examine an item in the room."];
 
     [wq print: @"look"];
     [wq command:@"look at your surroundings."];
@@ -212,6 +241,12 @@
     [wq print: @"say [words]"];
     [wq command:@"Talk to something or somebody."];
 
+    [wq print: @"shop "];
+    [wq command:@"Talk to a shop owner."];
+
+    [wq print: @"buy [item] "];
+    [wq command:@"Buy an item from a shop."];
+    
   }
 }
 
@@ -232,6 +267,28 @@
       
     }else{
       [wq print:@"Could not find a %@ in the room" , objectID];
+    }
+  }  
+}
+
+-(void)dropCommand:(NSArray *) params {
+  if( [params count] == 1){
+    [wq print:@"Drop what?"];
+  }else{
+    NSString *objectID = [params objectAtIndex:1];
+    if([@"all" isEqualToString:objectID]){
+      [wq command:@"All is not yet implemented."];
+      return;
+    }
+    
+    if([Player hasItemByID:objectID]){
+      Item* item = [Player getItemByID:objectID];
+      [wq.currentRoom addItem:item];
+      [[Player getItemByID:objectID] onDrop];
+      [wq.inventory removeItemByID:objectID];
+      
+    }else{
+      [wq print:@"Could not find a %@ in your inventory" , objectID];
     }
   }  
 }
