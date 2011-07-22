@@ -56,8 +56,8 @@
 		6065BC9113D3619000F1F6D4 /* StartingRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartingRoom.m; path = Rooms/StartingRoom.m; sourceTree = "<group>"; };
 		606B2B7313D4F5AF00B90223 /* WibbleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WibbleObject.h; sourceTree = "<group>"; };
 		606B2B7413D4F5B000B90223 /* WibbleObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WibbleObject.m; sourceTree = "<group>"; };
-		606B2B7613D4F8F100B90223 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
-		606B2B7A13D5282A00B90223 /* initialIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initialIcon.png; sourceTree = "<group>"; };
+		606B2B7613D4F8F100B90223 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO; path = ../KieronononGame/TODO; sourceTree = "<group>"; };
+		606B2B7A13D5282A00B90223 /* initialIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = initialIcon.png; path = ../initialIcon.png; sourceTree = "<group>"; };
 		6081AB1D13D23D25007C5545 /* GoatBoy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoatBoy.h; path = People/GoatBoy.h; sourceTree = "<group>"; };
 		6081AB1E13D23D25007C5545 /* GoatBoy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoatBoy.m; path = People/GoatBoy.m; sourceTree = "<group>"; };
 		6081AB2113D243CD007C5545 /* Keytar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Keytar.h; path = Items/Keytar.h; sourceTree = "<group>"; };
@@ -70,10 +70,10 @@
 		609B9FAC13C901D400888A6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		609B9FAE13C901D400888A6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		609B9FB013C901D400888A6E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		609B9FB413C901D400888A6E /* MyBoots-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyBoots-Info.plist"; sourceTree = "<group>"; };
+		609B9FB413C901D400888A6E /* WibbleQuest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "WibbleQuest-Info.plist"; sourceTree = "<group>"; };
 		609B9FB613C901D400888A6E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		609B9FB813C901D400888A6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		609B9FBA13C901D400888A6E /* MyBoots-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyBoots-Prefix.pch"; sourceTree = "<group>"; };
+		609B9FBA13C901D400888A6E /* Wibble-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wibble-Prefix.pch"; sourceTree = "<group>"; };
 		609B9FBB13C901D400888A6E /* MyBootsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBootsAppDelegate.h; sourceTree = "<group>"; };
 		609B9FBC13C901D400888A6E /* MyBootsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBootsAppDelegate.m; sourceTree = "<group>"; };
 		609B9FBE13C901D400888A6E /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		609B9F9D13C901D400888A6E = {
 			isa = PBXGroup;
 			children = (
-				606B2B7A13D5282A00B90223 /* initialIcon.png */,
+				60CC9EF713C9D5C0006D116C /* WibbleQuest */,
 				609B9FB213C901D400888A6E /* Text Adventure Game */,
 				609B9FB313C901D400888A6E /* Supporting Files */,
 				609B9FAB13C901D400888A6E /* Frameworks */,
@@ -177,25 +177,24 @@
 			isa = PBXGroup;
 			children = (
 				60F49DCE13CBD32E00BDB07C /* Game */,
-				60CC9EF713C9D5C0006D116C /* WibbleQuest */,
 				609B9FD213C901E200888A6E /* Boilerplate */,
 				60A1E12313D218AB00F42A84 /* README */,
-				606B2B7613D4F8F100B90223 /* TODO */,
 			);
 			name = "Text Adventure Game";
-			path = MyBoots;
+			path = KieronononGame;
 			sourceTree = "<group>";
 		};
 		609B9FB313C901D400888A6E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				609B9FB413C901D400888A6E /* MyBoots-Info.plist */,
+				606B2B7A13D5282A00B90223 /* initialIcon.png */,
+				609B9FB413C901D400888A6E /* WibbleQuest-Info.plist */,
 				609B9FB513C901D400888A6E /* InfoPlist.strings */,
 				609B9FB813C901D400888A6E /* main.m */,
-				609B9FBA13C901D400888A6E /* MyBoots-Prefix.pch */,
+				609B9FBA13C901D400888A6E /* Wibble-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			path = MyBoots;
+			path = KieronononGame;
 			sourceTree = "<group>";
 		};
 		609B9FD213C901E200888A6E /* Boilerplate */ = {
@@ -211,6 +210,7 @@
 		60CC9EF713C9D5C0006D116C /* WibbleQuest */ = {
 			isa = PBXGroup;
 			children = (
+				606B2B7613D4F8F100B90223 /* TODO */,
 				60F5129E13D1C7D300978EC0 /* Niceities */,
 				60F5129D13D1C7BE00978EC0 /* Core */,
 				60F5129C13D1C79B00978EC0 /* Root Objects */,
@@ -384,7 +384,7 @@
 			attributes = {
 				ORGANIZATIONNAME = "http://ortatherox.com";
 			};
-			buildConfigurationList = 609B9FA213C901D400888A6E /* Build configuration list for PBXProject "MyBoots" */;
+			buildConfigurationList = 609B9FA213C901D400888A6E /* Build configuration list for PBXProject "WibbleQuest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -554,8 +554,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyBoots/MyBoots-Prefix.pch";
-				INFOPLIST_FILE = "MyBoots/MyBoots-Info.plist";
+				GCC_PREFIX_HEADER = "KieronononGame/Wibble-Prefix.pch";
+				INFOPLIST_FILE = "KieronononGame/WibbleQuest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -568,8 +568,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyBoots/MyBoots-Prefix.pch";
-				INFOPLIST_FILE = "MyBoots/MyBoots-Info.plist";
+				GCC_PREFIX_HEADER = "KieronononGame/Wibble-Prefix.pch";
+				INFOPLIST_FILE = "KieronononGame/WibbleQuest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -580,7 +580,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		609B9FA213C901D400888A6E /* Build configuration list for PBXProject "MyBoots" */ = {
+		609B9FA213C901D400888A6E /* Build configuration list for PBXProject "WibbleQuest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				609B9FCD13C901D400888A6E /* Debug */,
